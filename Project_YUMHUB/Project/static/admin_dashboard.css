@@ -1,0 +1,197 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #FC415A, #591BC5, #212335);
+  height: 100vh;
+  margin: 0rem;
+  overflow: hidden; 
+  position: relative;
+}
+
+#blob {
+  background-color: black;
+  height: 350px;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(to right, #d3cdd7, #474247);
+  animation: rotate 15s infinite;
+  filter:blur(150px);
+  opacity: 1;
+  z-index: -1;
+}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  overflow-x: hidden;
+  padding-top: 20px;
+  z-index: 1;
+}
+
+.sidebar h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.sidebar li {
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #666;
+  z-index: 1;
+}
+
+.sidebar li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.sidebar li.active {
+  background-color: #555;
+  z-index: 1;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+label {
+  margin-bottom: 10px;
+  z-index: 1;
+}
+
+input[type="text"], input[type="number"], textarea, input[type="file"] {
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 2px solid #555;
+  border-radius: 3px;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+
+textarea {
+  resize: vertical;
+  z-index: 1;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.notification {
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    background-color: #34352d;
+    color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1;
+  }
+  
+  .notification.show {
+    display: block;
+    animation: fadeOut 3s;
+    z-index: 1;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Add a smooth transition */
+}
+
+.alert-success {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.alert.hide {
+    opacity: 0;
+}
+
+.alert.show {
+    opacity: 1;
+}
+
+/* Add animation for hiding notification */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% comment %} <meta http-equiv="refresh" content="5;url={% url 'signup' %}"> {% endcomment %}
+    <title>YUM HUB</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <script>
+        setTimeout(function() {
+            window.location.href = {% url 'login' %};
+        }, 4000);
+    </script>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="{% static 'logo.png' %}" alt="Logo">
+    </div>
+</body>
+
+</html>

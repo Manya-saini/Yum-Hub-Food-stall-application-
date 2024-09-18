@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+    <h1>Signup Page</h1>
+	<form id="signup-form" method='post' action={% url 'signup'%}>
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="phone">Mobile Number</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="user_type">SignUp as:</label>
+		<select name="user_type">
+			<option value="user">User</option>
+			<option value="admin">Admin</option>
+		</select><br><br>
+      
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      
+      
+        <div class="center">
+          <button type="submit" id="signup-button" value="Sign Up">Sign Up</button>
+        </div>
+      </form>
+      
+      <div class="notification" id="signup-notification"></div>
+
+    <div id="blob"></div>
+    <div id="blur"></div>
+            
+    <script>
+        const blob = document.getElementById("blob");
+        
+        window.onpointermove = event => { 
+            const { clientX, clientY } = event;
+            
+            blob.animate({
+                left: `${clientX}px`,
+                top: `${clientY}px`
+            }, { duration: 0, fill: "forwards" });
+        }
+    </script>
+</body>
+</html>

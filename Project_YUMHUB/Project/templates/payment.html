@@ -1,0 +1,106 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Gateway</title>
+  <link rel="stylesheet" href="{% static 'payment.css'%}">
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>YUM HUB</h1>
+  </header>
+  <div class="container">
+    <h2>Payment Gateway</h2>
+    <div class="amount">
+      <p>Amount Payable: <b> &#8377;{{total}} </b> (including taxes)</p>
+    </div>
+    <form action="{% url 'bill' %}" method='post'>
+        {% csrf_token %}
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" name="paymentMethod" onchange="toggleFields()">
+        <option value="cash">Cash</option>
+        <option value="card">Card</option>
+        <option value="wallet">Wallet</option>
+      </select>
+
+      <div id="walletFields" style="display: none;">
+        <p>Wallet Balance: &#8377;150</p>
+      </div>
+      
+      <div id="cardFields" style="display: none;">
+        <div>
+          <label for="cardNumber">Card Number</label>
+          <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number">
+        </div>
+        <div>
+          <label for="expiryDate">Expiry Date</label>
+          <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+        </div>
+        <div>
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+        </div>
+      </div>
+      
+
+      <div id='pay-now'>
+        
+        <input type="hidden" name="total_amount" value="{{ total_amount }}">
+        {% for order in processed_orders %}
+            <input type="hidden" name="processed_orders[]" value="{{ order }}">
+        {% endfor %}
+        <button type="submit" style="display: block; margin: 0 auto;" id="pay-now">Pay Now</button>
+    </form>
+  </div>
+</div>
+
+  <footer class="footer">
+    <p>&copy; 2023 Yum Hub</p>
+  </footer>
+
+  <script>
+  
+    function toggleFields() {
+      var paymentMethod = document.getElementById("paymentMethod").value;
+      var walletFields = document.getElementById("walletFields");
+      var cardFields = document.getElementById("cardFields");
+
+      if (paymentMethod === "wallet") {
+        walletFields.style.display = "block";
+        cardFields.style.display = "none";
+      } else if (paymentMethod === "card") {
+        walletFields.style.display = "none";
+        cardFields.style.display = "block";
+      } else {
+        walletFields.style.display = "none";
+        cardFields.style.display = "none";
+      }
+    }
+  </script>
+  
+  <div id="blob"></div>
+  <div id="blur"></div>
+
+  <script>
+    const blob = document.getElementById("blob");
+
+    window.onpointermove = event => {
+      const { clientX, clientY } = event;
+
+      blob.animate({
+        left: `${clientX}px`,
+        top: `${clientY}px`
+      }, {
+        duration: 0,
+        fill: "forwards"
+      });
+    }
+  </script>
+</body>
+
+</html>

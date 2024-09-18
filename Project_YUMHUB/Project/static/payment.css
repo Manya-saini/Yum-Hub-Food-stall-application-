@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #FC415A, #591BC5, #212335);; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100vh;
+    margin: 0rem;
+    overflow: hidden; 
+    position: relative;  
+    min-height:max-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #blob {
+    background-color: black;
+    height: 350px;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: linear-gradient(to right, #d3cdd7, #474247);
+    animation: rotate 15s infinite;
+    filter:blur(150px);
+    opacity: 1;
+    z-index: -1;
+  }
+  
+  .header {
+	background-color: #FFC107;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+}
+  
+  /* .container {
+    max-width: 600px;
+    max-height: 400px;
+    margin: auto auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  } */
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:auto auto;
+    max-width: 400px;
+     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 2rem;
+    z-index: 10;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .amount {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+	font-size: 20px;
+	color: #333;
+}
+
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  select,
+  input[type="text"] {
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  #cardFields {
+    display: none;
+  }
+  
+  button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #fff;
+    color: #333;
+    border:#333;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+  
+  .footer {
+	background-color: #FFC107;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	position: sticky;
+	bottom: 0;
+	width: 100%;
+}

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+    <link rel="stylesheet" href={% static "login.css" %}>
+</head>
+<body>
+	<h1>YUM HUB</h1>
+	<form method='post' action={% url 'login' %}>
+		{% csrf_token %}
+		<label for="user_type">Login as:</label>
+		<select id="user_type" name="user_type">
+			<option value="user">User</option>
+			<option value="admin">Admin</option>
+		</select><br><br>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" required><br><br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required><br><br>
+		<input type="submit" value="Login">
+	</form>
+    <div class="s">
+        <p>Don't have an account? <a href={% url 'signup' %} >Sign up here.</a></p>
+    </div>
+
+	<div id="blob"></div>
+    <div id="blur"></div>
+          
+    <script>
+    const blob = document.getElementById("blob");
+    
+    window.onpointermove = event => { 
+      const { clientX, clientY } = event;
+      
+      blob.animate({
+        left: `${clientX}px`,
+        top: `${clientY}px`
+      }, { duration: 0, fill: "forwards" });
+    }
+    </script>
+	
+</body>
+</html>

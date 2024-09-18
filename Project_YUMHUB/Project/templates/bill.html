@@ -1,0 +1,90 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmed</title>
+    <link rel="stylesheet" type="text/css" href={% static 'bill.css'%}>
+</head>
+<body>
+    <header class="header">
+        <h1>Order Confirmed</h1>
+    </header>
+
+    <div class="confirmation">
+        <img src="{% static 'instagram-tick.png' %}"alt="Confirmation Tick" class="tick">
+        <h2>Thank You For Your Order!</h2>
+        <p>Your order has been confirmed. Please find the bill below.</p>
+    </div>
+
+    <div id = "bill-wrapper" class="bill">
+        <h2>Bill</h2>
+        <table id= "bill-table">
+          <tr>
+            <th>Dish</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+          {% for order in processed_orders %}
+          <tr>
+            <td>{{ order.name }}</td>
+            <td>&#8377;{{ order.price }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>&#8377;{{order.o_total}}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="3">Subtotal:</td>
+            <td>&#8377;{{ total_amount }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Tax (10%):</td>
+            <td>&#8377;{{ tax }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Total:</td>
+            <td>&#8377;{{ total }}</td>
+          </tr>
+        </table>
+      </div>
+      
+
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" style="display: block; margin: 0 auto; border-radius: 10px; padding: 10px 20px; background-color: #FFC107; color: #fff; border: none; margin-bottom:20px">Logout</button>
+    </form>
+    
+
+      <footer class="footer">
+        <p>&copy; 2023 Yum Hub</p>
+        
+    </footer>
+    
+  <div id="blob"></div>
+    <div id="blur"></div>
+      
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const billTable = document.getElementById("bill-table");
+        const billWrapper = document.getElementById("bill-wrapper");
+        const billHeader = document.querySelector(".bill h2");
+        const billWrapperHeight = billTable.offsetHeight + billHeader.offsetHeight + 70; // Adjust padding and margin values accordingly
+
+        billWrapper.style.height = `${billWrapperHeight}px`;
+    });
+
+    const blob = document.getElementById("blob");
+    
+    window.onpointermove = event => { 
+      const { clientX, clientY } = event;
+      
+      blob.animate({
+        left: `${clientX}px`,
+        top: `${clientY}px`
+      }, { duration: 0, fill: "forwards" });
+    }
+    </script>
+
+</body>
+</html>

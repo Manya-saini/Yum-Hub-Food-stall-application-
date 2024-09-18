@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu.css' %}">
+</head>
+<body>
+    <header class="header">
+        <h1>Yum Hub</h1>
+    </header>
+
+    <div class="menu">
+        <form action="{% url 'checkout' %}" method="post">
+            {% csrf_token %}
+            {% for dish in dishes %}
+            <div class="menu-item">
+                <img src="data:image/jpeg;base64,{{ dish.image_data }}" alt="{{ dish.name }}">
+                <h2>{{ dish.name }}</h2>
+                <p>Price: {{ dish.price }}</p>
+                <input type="hidden" name="dish_{{dish.id}}" value="0">
+                <input type="number" name="dish_{{dish.id}}" value ='0' min="0" max="9">
+            </div>
+            {% endfor %}
+           
+            <div class="checkout">
+                <button type='submit' class='checkout-button' >Checkout
+            </div>
+        </form>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <footer class="footer">
+        <p>&copy; 2023 Yum Hub</p>
+    </footer>
+
+    <script>
+        // JavaScript code remains the same
+    </script>
+</body>
+</html>

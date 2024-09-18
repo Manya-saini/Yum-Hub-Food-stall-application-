@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'checkout.css' %}">
+</head>
+<body>
+    <header class="header">
+        <h1>Checkout</h1>
+    </header>
+
+	<div class="order-details">
+		<h2>Order Details</h2>
+        <ul>
+        {% for order in processed_orders %}
+            <li>{{ order.name }} - &#8377; {{ order.price }} x {{ order.quantity }}</li>
+        {% endfor %}
+        </ul>
+	</div>
+	
+    <div class="total-amount">
+        <h2>Total Amount Payable:</h2>
+        <p>&#8377; {{ total_amount }}</p>
+    </div>
+
+    <div class="order-button">
+        <form action="{% url 'payment' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="total_amount" value="{{ total_amount }}">
+            {% for order in processed_orders %}
+                <input type="hidden" name="processed_orders[]" value="{{ order }}">
+            {% endfor %}
+            <button type="submit">Proceed to Payment</button>
+        </form>
+        
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 Yum Hub</p>
+    </footer>
+
+    <script>
+        document.getElementById("place-order").addEventListener("click", function() {
+            window.location.href = "{% url 'payment' %}";
+        });
+    </script>
+    <div id="blob"></div>
+    <div id="blur"></div>
+</body>
+</html>
